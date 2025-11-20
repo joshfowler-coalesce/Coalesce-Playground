@@ -1,0 +1,96 @@
+fileVersion: 1
+id: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+name: SALES_BASE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Sales by supplier and nation for finished orders in top 5 years
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019aa361-d547-74e3-9d10-0d532f85aaa1
+          stepCounter: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: L.L_SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019aa361-d547-74e3-9d10-116c1755dcda
+          stepCounter: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: NATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: N.N_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019aa361-d547-74e3-9d10-1594a1d3d247
+          stepCounter: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: SALES_AMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUM(((L.L_EXTENDEDPRICE * L.L_QUANTITY) * (1 - L.L_DISCOUNT)))
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC2
+            nodeName: CUSTOMER
+          - locationName: SRC2
+            nodeName: LINEITEM
+          - locationName: SRC2
+            nodeName: NATION
+          - locationName: SRC2
+            nodeName: ORDERS
+          - locationName: TARGET
+            nodeName: SALES_YEAR
+        join:
+          joinCondition: |-
+            FROM {{ ref('SRC2', 'LINEITEM') }} L
+            JOIN {{ ref('SRC2', 'ORDERS') }} O ON L.L_ORDERKEY = O.O_ORDERKEY
+            JOIN {{ ref('SRC2', 'CUSTOMER') }} C ON O.O_CUSTKEY = C.C_CUSTKEY
+            JOIN {{ ref('SRC2', 'NATION') }} N ON C.C_NATIONKEY = N.N_NATIONKEY
+            WHERE O.O_ORDERSTATUS = 'F'
+              AND YEAR(O.O_ORDERDATE) IN (SELECT YR FROM {{ ref('TARGET', 'SALES_YEAR') }})
+            GROUP BY L.L_SUPPKEY, N.N_NAME
+        name: STG_NODE1
+        noLinkRefs: []
+  name: SALES_BASE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,70 @@
+fileVersion: 1
+id: 763830ec-d44b-4417-85e9-f627d9302f1e
+name: SUPPLIER_SALES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Total sales amount by supplier
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019aa361-dc32-77b9-b126-dfdd96f3da93
+          stepCounter: 763830ec-d44b-4417-85e9-f627d9302f1e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: SUPPKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SB.SUPPKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019aa361-dc32-77b9-b126-e017fd944e48
+          stepCounter: 763830ec-d44b-4417-85e9-f627d9302f1e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: SALES_AMT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: SUM(SB.SALES_AMT)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: SALES_BASE
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'SALES_BASE') }} SB
+            GROUP BY SB.SUPPKEY
+        name: STG_NODE2
+        noLinkRefs: []
+  name: SUPPLIER_SALES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
