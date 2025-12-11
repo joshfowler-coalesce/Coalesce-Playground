@@ -1,5 +1,5 @@
 fileVersion: 1
-id: 7aa3c316-4323-447f-84a5-546b90d3ff8d
+id: 299182df-f288-439c-ab4c-e1b512afca36
 name: TOP_NATION_SALES
 operation:
   config:
@@ -10,7 +10,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Top 10 nation sales by supplier
+  description: Top 10 nations per supplier with aggregated sales
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ec4b-745c-8c65-9c0f3980cb5e
-          stepCounter: 7aa3c316-4323-447f-84a5-546b90d3ff8d
+          columnCounter: 019aa725-1fc5-7042-8349-d0d98ff38e31
+          stepCounter: 299182df-f288-439c-ab4c-e1b512afca36
         config: {}
         dataType: NUMBER
         description: ""
@@ -32,8 +32,8 @@ operation:
             transform: NR.SUPPKEY
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ec4b-745c-8c65-a25baf50b677
-          stepCounter: 7aa3c316-4323-447f-84a5-546b90d3ff8d
+          columnCounter: 019aa725-1fc5-7042-8349-d7f887ea411b
+          stepCounter: 299182df-f288-439c-ab4c-e1b512afca36
         config: {}
         dataType: NUMBER
         description: ""
@@ -45,8 +45,8 @@ operation:
             transform: SUM(NR.SALES_AMT)
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ec4b-745c-8c65-a5aa03813df4
-          stepCounter: 7aa3c316-4323-447f-84a5-546b90d3ff8d
+          columnCounter: 019aa725-1fc5-7042-8349-d962454d9de4
+          stepCounter: 299182df-f288-439c-ab4c-e1b512afca36
         config: {}
         dataType: VARCHAR
         description: ""

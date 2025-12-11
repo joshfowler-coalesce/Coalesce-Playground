@@ -1,5 +1,5 @@
 fileVersion: 1
-id: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+id: 8e2e20d0-30fd-4f23-a2b5-893ca1b3a4e1
 name: SALES_BASE
 operation:
   config:
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-d547-74e3-9d10-0d532f85aaa1
-          stepCounter: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+          columnCounter: 019aa725-007e-7589-b979-11b490734793
+          stepCounter: 8e2e20d0-30fd-4f23-a2b5-893ca1b3a4e1
         config: {}
         dataType: NUMBER
         description: ""
@@ -32,8 +32,8 @@ operation:
             transform: L.L_SUPPKEY
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-d547-74e3-9d10-116c1755dcda
-          stepCounter: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+          columnCounter: 019aa725-007e-7589-b979-156f29b29921
+          stepCounter: 8e2e20d0-30fd-4f23-a2b5-893ca1b3a4e1
         config: {}
         dataType: VARCHAR
         description: ""
@@ -45,8 +45,8 @@ operation:
             transform: N.N_NAME
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-d547-74e3-9d10-1594a1d3d247
-          stepCounter: 9fbb3bfb-9012-4d08-b1aa-bbb42a4c4762
+          columnCounter: 019aa725-007e-7589-b979-1b2221039451
+          stepCounter: 8e2e20d0-30fd-4f23-a2b5-893ca1b3a4e1
         config: {}
         dataType: NUMBER
         description: ""
@@ -85,7 +85,7 @@ operation:
             WHERE O.O_ORDERSTATUS = 'F'
               AND YEAR(O.O_ORDERDATE) IN (SELECT YR FROM {{ ref('TARGET', 'SALES_YEAR') }})
             GROUP BY L.L_SUPPKEY, N.N_NAME
-        name: STG_NODE1
+        name: STG_NODE
         noLinkRefs: []
   name: SALES_BASE
   overrideSQL: false

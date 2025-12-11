@@ -1,5 +1,5 @@
 fileVersion: 1
-id: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+id: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
 name: SUPPLIER_NATION_ANALYSIS
 operation:
   config:
@@ -10,7 +10,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Comprehensive supplier sales analysis across nation tiers
+  description: Complete supplier analysis with sales breakdown by nation ranking
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-716e1baee104
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a8f-f60622099a4b
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: NUMBER
         description: ""
@@ -32,8 +32,8 @@ operation:
             transform: SD.SUPPKEY
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-75838353d18c
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a8f-fba4e1c84cae
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: VARCHAR
         description: ""
@@ -45,8 +45,8 @@ operation:
             transform: SD.SUPP_NAME
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-7928d3de19ed
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a8f-fea232a38bbe
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: VARCHAR
         description: ""
@@ -58,8 +58,8 @@ operation:
             transform: SD.NATION
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-7f5d6d5fa1f9
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a90-013ae0c66abe
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: NUMBER
         description: ""
@@ -71,8 +71,8 @@ operation:
             transform: SS.SALES_AMT
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-80b6d3b3f38a
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a90-0534ed9bd0c4
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: NUMBER
         description: ""
@@ -84,8 +84,8 @@ operation:
             transform: TNS.SALES_AMT
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-85c92853f79a
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a90-0aaa4425b593
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: NUMBER
         description: ""
@@ -97,8 +97,8 @@ operation:
             transform: MNS.SALES_AMT
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-8b8d8222caa1
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a90-0c441f47869f
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: NUMBER
         description: ""
@@ -110,8 +110,8 @@ operation:
             transform: BNS.SALES_AMT
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-2445-72a2-a544-8ec2ff270179
-          stepCounter: f26c49b3-4fcf-4f0c-a559-0c2cd7a3d5a0
+          columnCounter: 019aa725-54c2-72df-8a90-11a12771c971
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
         config: {}
         dataType: VARCHAR
         description: ""
@@ -121,6 +121,18 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: TNS.TOP_NATIONS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019ae04a-bf32-755f-b7c6-425aa8b2fa47
+          stepCounter: 7c0263cc-ccdd-40cc-bfd6-e05dcad92c33
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NATION_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: UPPER(SUBSTR(SD.NATION, 1, 3))
     cteString: ""
     description: ""
     destinationName: ""
@@ -149,7 +161,7 @@ operation:
             JOIN {{ ref('TARGET', 'MID_NATION_SALES') }} MNS ON SD.SUPPKEY = MNS.SUPPKEY
             JOIN {{ ref('TARGET', 'BOTTOM_NATION_SALES') }} BNS ON SD.SUPPKEY = BNS.SUPPKEY
             ORDER BY SD.SUPPKEY
-        name: STG_NODE1
+        name: SUPPLIER_NATION_ANALYSIS
         noLinkRefs: []
   name: SUPPLIER_NATION_ANALYSIS
   overrideSQL: false

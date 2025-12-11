@@ -1,5 +1,5 @@
 fileVersion: 1
-id: e1a79b75-acbf-4697-af29-79b6dbfb5ff7
+id: 0d628e6b-074c-4d6f-b8e9-67d7eb89c202
 name: SUPPLIER_DETAILS
 operation:
   config:
@@ -10,7 +10,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Supplier information with nation
+  description: Supplier information with nation details
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-0a96-71f8-9c85-0ff1289a7111
-          stepCounter: e1a79b75-acbf-4697-af29-79b6dbfb5ff7
+          columnCounter: 019aa725-3e26-704c-b42e-c429e671e2d6
+          stepCounter: 0d628e6b-074c-4d6f-b8e9-67d7eb89c202
         config: {}
         dataType: NUMBER
         description: ""
@@ -32,8 +32,8 @@ operation:
             transform: S.S_SUPPKEY
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-0a96-71f8-9c85-10159ab0b1c6
-          stepCounter: e1a79b75-acbf-4697-af29-79b6dbfb5ff7
+          columnCounter: 019aa725-3e26-704c-b42e-cb64ff55a8fe
+          stepCounter: 0d628e6b-074c-4d6f-b8e9-67d7eb89c202
         config: {}
         dataType: VARCHAR
         description: ""
@@ -45,8 +45,8 @@ operation:
             transform: S.S_NAME || ' ('|| N.N_NAME ||')'
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa362-0a96-71f8-9c85-15d51adbe059
-          stepCounter: e1a79b75-acbf-4697-af29-79b6dbfb5ff7
+          columnCounter: 019aa725-3e26-704c-b42e-ce1599a585db
+          stepCounter: 0d628e6b-074c-4d6f-b8e9-67d7eb89c202
         config: {}
         dataType: VARCHAR
         description: ""
@@ -74,7 +74,7 @@ operation:
           joinCondition: |-
             FROM {{ ref('SRC2', 'SUPPLIER') }} S
             JOIN {{ ref('SRC2', 'NATION') }} N ON S.S_NATIONKEY = N.N_NATIONKEY
-        name: STG_NODE1
+        name: SUPPLIER_DETAILS
         noLinkRefs: []
   name: SUPPLIER_DETAILS
   overrideSQL: false

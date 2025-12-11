@@ -1,5 +1,5 @@
 fileVersion: 1
-id: 763830ec-d44b-4417-85e9-f627d9302f1e
+id: d2ba8d6b-f14e-4720-bb9b-c8fbd5e95b63
 name: SUPPLIER_SALES
 operation:
   config:
@@ -10,7 +10,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Total sales amount by supplier
+  description: Total sales amount per supplier
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-dc32-77b9-b126-dfdd96f3da93
-          stepCounter: 763830ec-d44b-4417-85e9-f627d9302f1e
+          columnCounter: 019aa725-10dd-76ad-a430-aeb90490deb4
+          stepCounter: d2ba8d6b-f14e-4720-bb9b-c8fbd5e95b63
         config: {}
         dataType: NUMBER
         description: ""
@@ -32,8 +32,8 @@ operation:
             transform: SB.SUPPKEY
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-dc32-77b9-b126-e017fd944e48
-          stepCounter: 763830ec-d44b-4417-85e9-f627d9302f1e
+          columnCounter: 019aa725-10dd-76ad-a430-b1c74a83800d
+          stepCounter: d2ba8d6b-f14e-4720-bb9b-c8fbd5e95b63
         config: {}
         dataType: NUMBER
         description: ""
@@ -59,7 +59,7 @@ operation:
           joinCondition: |-
             FROM {{ ref('TARGET', 'SALES_BASE') }} SB
             GROUP BY SB.SUPPKEY
-        name: STG_NODE2
+        name: STG_NODE1
         noLinkRefs: []
   name: SUPPLIER_SALES
   overrideSQL: false

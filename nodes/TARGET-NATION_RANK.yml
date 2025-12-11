@@ -1,5 +1,5 @@
 fileVersion: 1
-id: bc918ba2-76e4-496e-b2ec-8d8bac68ac23
+id: bb8a9e87-8918-4caf-b2e1-e0de8aa94a72
 name: NATION_RANK
 operation:
   config:
@@ -10,7 +10,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Nation sales ranked by supplier
+  description: Ranked nations per supplier by sales amount
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ef07-7662-b135-31219563e802
-          stepCounter: bc918ba2-76e4-496e-b2ec-8d8bac68ac23
+          columnCounter: 019aa725-159e-7446-9500-53d382e8c16f
+          stepCounter: bb8a9e87-8918-4caf-b2e1-e0de8aa94a72
         config: {}
         dataType: NUMBER
         description: ""
@@ -32,8 +32,8 @@ operation:
             transform: SB.SUPPKEY
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ef07-7662-b135-34189822c0ba
-          stepCounter: bc918ba2-76e4-496e-b2ec-8d8bac68ac23
+          columnCounter: 019aa725-159e-7446-9500-564520450c6a
+          stepCounter: bb8a9e87-8918-4caf-b2e1-e0de8aa94a72
         config: {}
         dataType: VARCHAR
         description: ""
@@ -45,8 +45,8 @@ operation:
             transform: SB.NATION
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ef07-7662-b135-3b935e0a826c
-          stepCounter: bc918ba2-76e4-496e-b2ec-8d8bac68ac23
+          columnCounter: 019aa725-159e-7446-9500-5b11e0455e9d
+          stepCounter: bb8a9e87-8918-4caf-b2e1-e0de8aa94a72
         config: {}
         dataType: NUMBER
         description: ""
@@ -58,8 +58,8 @@ operation:
             transform: SB.SALES_AMT
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ef08-759a-88e9-c0ea4adcf001
-          stepCounter: bc918ba2-76e4-496e-b2ec-8d8bac68ac23
+          columnCounter: 019aa725-159e-7446-9500-5cab88868cfe
+          stepCounter: bb8a9e87-8918-4caf-b2e1-e0de8aa94a72
         config: {}
         dataType: NUMBER
         description: ""
@@ -71,8 +71,8 @@ operation:
             transform: ROW_NUMBER() OVER (PARTITION BY SB.SUPPKEY ORDER BY SB.SALES_AMT)
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-ef08-759a-88e9-c7cff88a3e4e
-          stepCounter: bc918ba2-76e4-496e-b2ec-8d8bac68ac23
+          columnCounter: 019aa725-159e-7446-9500-60d8424a52b0
+          stepCounter: bb8a9e87-8918-4caf-b2e1-e0de8aa94a72
         config: {}
         dataType: NUMBER
         description: ""
@@ -96,7 +96,7 @@ operation:
             nodeName: SALES_BASE
         join:
           joinCondition: FROM {{ ref('TARGET', 'SALES_BASE') }} SB
-        name: STG_NODE3
+        name: NATION_RANK
         noLinkRefs: []
   name: NATION_RANK
   overrideSQL: false

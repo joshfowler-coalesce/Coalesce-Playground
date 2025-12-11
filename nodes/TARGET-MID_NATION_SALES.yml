@@ -1,5 +1,5 @@
 fileVersion: 1
-id: 1b99d7fe-4654-41de-9295-4328013e4108
+id: 2e42c077-cd1d-4681-a15a-197ae909d581
 name: MID_NATION_SALES
 operation:
   config:
@@ -10,7 +10,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Middle-tier nation sales by supplier
+  description: Middle-ranked nations per supplier with aggregated sales
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-f807-7460-9ed7-27b22238ce56
-          stepCounter: 1b99d7fe-4654-41de-9295-4328013e4108
+          columnCounter: 019aa725-2a50-744c-aea4-1a0b3203cfd1
+          stepCounter: 2e42c077-cd1d-4681-a15a-197ae909d581
         config: {}
         dataType: NUMBER
         description: ""
@@ -32,8 +32,8 @@ operation:
             transform: NR.SUPPKEY
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-f807-7460-9ed7-2868582092e2
-          stepCounter: 1b99d7fe-4654-41de-9295-4328013e4108
+          columnCounter: 019aa725-2a50-744c-aea4-1f746d0c9b60
+          stepCounter: 2e42c077-cd1d-4681-a15a-197ae909d581
         config: {}
         dataType: NUMBER
         description: ""
@@ -45,8 +45,8 @@ operation:
             transform: SUM(NR.SALES_AMT)
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-f807-7460-9ed7-2d1c6f3010ad
-          stepCounter: 1b99d7fe-4654-41de-9295-4328013e4108
+          columnCounter: 019aa725-2a50-744c-aea4-21d7c65be817
+          stepCounter: 2e42c077-cd1d-4681-a15a-197ae909d581
         config: {}
         dataType: VARCHAR
         description: ""

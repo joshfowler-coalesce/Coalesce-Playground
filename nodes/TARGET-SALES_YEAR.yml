@@ -1,5 +1,5 @@
 fileVersion: 1
-id: b6adeff7-1886-4698-8730-e3719226f127
+id: fa1f33c7-fe46-4816-bb9d-c974532967ab
 name: SALES_YEAR
 operation:
   config:
@@ -10,7 +10,7 @@ operation:
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Top 5 most recent years from orders
+  description: Top 5 order years from orders data
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -19,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 019aa361-c41c-70d9-a1ca-1db3ab66ac38
-          stepCounter: b6adeff7-1886-4698-8730-e3719226f127
+          columnCounter: 019aa724-f0b5-7198-bf29-d489bcbdc278
+          stepCounter: fa1f33c7-fe46-4816-bb9d-c974532967ab
         config: {}
         dataType: NUMBER
         description: ""
