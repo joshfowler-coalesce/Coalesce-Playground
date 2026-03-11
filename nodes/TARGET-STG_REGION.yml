@@ -1,0 +1,73 @@
+fileVersion: 1
+id: 5cd55db5-be39-44eb-863e-9ad5083d1876
+name: STG_REGION
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Staging table for region data
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019cb990-67b1-7438-a129-6b458d6f8cec
+          stepCounter: 5cd55db5-be39-44eb-863e-9ad5083d1876
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: r_regionkey
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: R.R_REGIONKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019cb990-67b1-7438-a129-6c4b3a1bfb28
+          stepCounter: 5cd55db5-be39-44eb-863e-9ad5083d1876
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: r_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: R.R_NAME
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 019cb990-67b1-7438-a129-72ff4caca610
+          stepCounter: 5cd55db5-be39-44eb-863e-9ad5083d1876
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: r_comment
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: R.R_COMMENT
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        dependencies:
+          - locationName: SRC
+            nodeName: REGION
+        join:
+          joinCondition: FROM {{ ref('SRC', 'REGION') }} R
+        name: STG_NODE1
+        noLinkRefs: []
+  name: STG_REGION
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
