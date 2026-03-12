@@ -1,6 +1,9 @@
 fileVersion: 1
 id: "198"
 mappingDefinitions:
+  NEW_TEST:
+    database: JOSH_DEV
+    schema: WORK_DEV
   SRC:
     database: JOSH_DEV
     schema: SRC_COALESCE
