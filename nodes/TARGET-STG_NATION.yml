@@ -15,7 +15,27 @@ operation:
   locationName: TARGET
   materializationType: table
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: n_nationkey not null
+        runOrder: After
+        templateString: SELECT * FROM {{ ref('TARGET', 'STG_NATION') }} WHERE N_NATIONKEY IS NULL
+      - continueOnFailure: true
+        description: ""
+        name: n_name not null
+        runOrder: After
+        templateString: SELECT * FROM {{ ref('TARGET', 'STG_NATION') }} WHERE N_NAME IS NULL
+      - continueOnFailure: true
+        description: ""
+        name: n_regionkey not null
+        runOrder: After
+        templateString: SELECT * FROM {{ ref('TARGET', 'STG_NATION') }} WHERE N_REGIONKEY IS NULL
+      - continueOnFailure: true
+        description: ""
+        name: n_comment not null
+        runOrder: After
+        templateString: SELECT * FROM {{ ref('TARGET', 'STG_NATION') }} WHERE N_COMMENT IS NULL
     columns:
       - appliedColumnTests: {}
         columnReference:
@@ -74,7 +94,7 @@ operation:
             nodeName: NATION
         join:
           joinCondition: FROM {{ ref('SRC', 'NATION') }} N
-        name: STG_NODE
+        name: STG_NATION
         noLinkRefs: []
   name: STG_NATION
   overrideSQL: false

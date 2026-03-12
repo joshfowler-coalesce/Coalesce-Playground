@@ -9,12 +9,13 @@ metadata:
     short: STG
     plural: Stages
     tagColor: '#2EB67D'
+    inputMode: 'sql'
 
     config:
     - groupName: Options
       items:
       - type: materializationSelector
-        default: table
+        default: 'table'
         options:
         - table
         - view
@@ -34,7 +35,7 @@ metadata:
         - "INSERT"
         - "UNION"
         - "UNION ALL"
-        isRequired: true
+        isRequired: false
         enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
 
       - displayName: Truncate Before
