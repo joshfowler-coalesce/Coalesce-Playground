@@ -1,0 +1,7 @@
+fileVersion: 1
+id: 5fcf457a-d465-4bf3-b73d-1c4f2505c86c
+name: sql node
+steps:
+  - 1692cb51-d0d7-4ce6-b596-7d2c92a588a2
+  - 2f80d6cb-a776-44b8-9652-ec6fc3cb8d09
+type: Subgraph

@@ -110,7 +110,7 @@ operation:
             nodeName: SUPPLIER
         join:
           joinCondition: FROM {{ ref('SRC', 'SUPPLIER') }} S
-        name: STG_NODE
+        name: STG_SUPPLIER
         noLinkRefs: []
   name: STG_SUPPLIER
   overrideSQL: false

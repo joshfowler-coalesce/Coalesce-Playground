@@ -1,0 +1,5 @@
+@id("b67005aa-c6ef-4e9e-952b-625a91eb7b44")
+@nodeType("2e4db651-fdf8-4b90-ac51-636cbd0c5767")
+SELECT O.O_ORDERKEY,
+CASE WHEN "O"."O_ORDERSTATUS" ILIKE ANY ('F', 'O') THEN 'Active' ELSE 'Other' END AS "STATUS_GROUP"
+FROM {{ ref('SRC', 'ORDERS') }} O

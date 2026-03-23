@@ -1,57 +1,58 @@
 {%- for test in node.tests if config.testsEnabled -%}
-    {%- if test.runOrder == 'Before' -%}
-        {{ test_stage(test.name, test.continueOnFailure) }}
-        {{ test.templateString }}
-    {%- endif -%}
-{%- endfor -%}
+        {%- if test.runOrder == 'Before' -%}
+            {{ test_stage(test.name, test.continueOnFailure) }}
+            {{ test.templateString }}
+        {%- endif -%}
+    {%- endfor -%}
 
-{# --- Pre-SQL --- #}
-{% if config.preSQL -%}
-    {{ stage('Pre-SQL') }}
-    {{ config.preSQL }}
-{%- endif %}
+    {# --- Pre-SQL --- #}
+    {% if config.preSQL -%}
+        {{ stage('Pre-SQL') }}
+        {{ config.preSQL }}
+    {%- endif %}
 
-{# --- Forced Truncate --- #}
-{{ stage('Truncate Table') }}
-TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }};
+    {# --- Forced Truncate --- #}
+    {{ stage('Truncate Table') }}
+    TRUNCATE TABLE {{ ref_no_link(node.location.name, node.name) }};
 
-{# --- Forced Insert --- #}
-{{ stage('Insert Data') }}
-INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
-( {% for col in columns -%}
-"{{ col.name }}"{% if not loop.last %}, {% endif %}
-{%- endfor %}
-)
-{% for source in sources -%}
-{{ source.cteString }} 
-SELECT
-{% for col in source.columns -%}
-{{ get_source_transform(col) }} AS "{{ col.name }}"{% if not loop.last %}, {% endif %}
-{%- endfor %}
-{{ source.join }}
+    {# --- Forced Insert --- #}
+    {{ stage('Insert Data') }}
+    INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+    (
+        {% for col in columns -%}
+            "{{ col.name }}"{% if not loop.last %}, {% endif %}
+        {%- endfor %}
+    )
+    {% for source in sources -%}
+        {{ source.cteString }}
+        SELECT
+        {% for col in source.columns -%}
+            {{ get_source_transform(col) }} AS "{{ col.name }}"{% if not loop.last %}, {% endif %}
+        {%- endfor %}
+        {{ source.join }}
+        
+        {% if not loop.last %}
+        UNION ALL
+        {% endif %}
+    {%- endfor %};
 
-{% if not loop.last %}
-UNION ALL
-{% endif %}
-{%- endfor %};
+    {# --- Post-SQL --- #}
+    {% if config.postSQL -%}
+        {{ stage('Post-SQL') }}
+        {{ config.postSQL }}
+    {%- endif %}
 
-{# --- Post-SQL --- #}
-{% if config.postSQL -%}
-{{ stage('Post-SQL') }}
-    {{ config.postSQL }}
-{%- endif %}
+    {# --- Tests --- #}
+    {% if config.testsEnabled -%}
+        {% for test in node.tests if test.runOrder == 'After' -%}
+            {{ test_stage(test.name, test.continueOnFailure) }}
+            {{ test.templateString }}
+        {%- endfor %}
 
-{# --- Tests --- #}
-{% if config.testsEnabled -%}
-    {% for test in node.tests if test.runOrder == 'After' -%}
-        {{ test_stage(test.name, test.continueOnFailure) }}
-        {{ test.templateString }}
-    {%- endfor %}
-
-    {% for column in columns -%}
-        {% for test in column.tests -%}
-            {{ test_stage(column.name + ": " + test.name) }}
-            {{ test.templateString }}
-        {%- endfor %}
-    {%- endfor %}
-{%- endif %}
+        {% for column in columns -%}
+            {% for test in column.tests -%}
+                {{ test_stage(column.name + ": " + test.name) }}
+                {{ test.templateString }}
+            {%- endfor %}
+        {%- endfor %}
+    {%- endif %}

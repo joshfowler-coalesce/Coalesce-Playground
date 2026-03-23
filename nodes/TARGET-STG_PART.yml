@@ -5,7 +5,7 @@ operation:
   config:
     insertStrategy: INSERT
     postSQL: ""
-    preSQL: ""
+    preSQL: SELECT 1
     testsEnabled: true
     truncateBefore: true
   database: ""
@@ -125,6 +125,19 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: P.P_COMMENT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7e8d704-0de8-492c-9736-baeca4157b7a
+          stepCounter: 8bb945d7-b4b8-4eac-be09-fd3fcdaf1853
+        config: {}
+        dataType: varchar
+        defaultValue: ""
+        description: ""
+        name: column-name-10
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: upper(p.p_comment)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

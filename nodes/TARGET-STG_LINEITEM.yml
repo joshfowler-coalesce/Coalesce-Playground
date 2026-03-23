@@ -218,7 +218,7 @@ operation:
             nodeName: LINEITEM
         join:
           joinCondition: FROM {{ ref('SRC', 'LINEITEM') }} L
-        name: STG_NODE1
+        name: STG_LINEITEM
         noLinkRefs: []
   name: STG_LINEITEM
   overrideSQL: false
